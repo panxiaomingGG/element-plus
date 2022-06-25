@@ -35,13 +35,11 @@ export const tabsProps = buildProps({
   },
   activeName: {
     type: [String, Number],
-    default: '',
   },
   closable: Boolean,
   addable: Boolean,
   modelValue: {
     type: [String, Number],
-    default: '',
   },
   editable: Boolean,
   tabPosition: {
@@ -87,11 +85,7 @@ export default defineComponent({
 
     const nav$ = ref<TabNavInstance>()
     const panes = reactive<Record<number, TabsPaneContext>>({})
-    const currentName = ref(
-      isNumber(props.modelValue)
-        ? props.modelValue
-        : props.modelValue || props.activeName || '0'
-    )
+    const currentName = ref(props.modelValue ?? props.activeName ?? '0')
 
     const changeCurrentName = (value: TabPanelName) => {
       currentName.value = value

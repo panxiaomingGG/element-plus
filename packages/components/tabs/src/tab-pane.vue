@@ -25,7 +25,7 @@ import {
 } from 'vue'
 import { eagerComputed } from '@vueuse/core'
 import { tabsRootContextKey } from '@element-plus/tokens'
-import { isNumber, throwError } from '@element-plus/utils'
+import { throwError } from '@element-plus/utils'
 import { useNamespace } from '@element-plus/hooks'
 import { tabPaneProps } from './tab-pane'
 
@@ -47,14 +47,10 @@ const ns = useNamespace('tab-pane')
 const index = ref<string>()
 const isClosable = computed(() => props.closable || tabsRoot.props.closable)
 const active = eagerComputed(
-  () =>
-    tabsRoot.currentName.value ===
-    (isNumber(props.name) ? props.name : props.name || index.value)
+  () => tabsRoot.currentName.value === (props.name ?? index.value)
 )
 const loaded = ref(active.value)
-const paneName = computed(() =>
-  isNumber(props.name) ? props.name : props.name || index.value
-)
+const paneName = computed(() => props.name ?? index.value)
 const shouldBeRender = eagerComputed(
   () => !props.lazy || loaded.value || active.value
 )
