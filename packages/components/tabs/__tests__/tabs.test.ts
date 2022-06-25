@@ -756,7 +756,6 @@ describe('Tabs.vue', () => {
       `,
     })
 
-    const tabsWrapper = wrapper.findComponent(Tabs)
     const navWrapper = wrapper.findComponent(TabNav)
     await nextTick()
 
