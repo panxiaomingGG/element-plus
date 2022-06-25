@@ -25,7 +25,7 @@ import type { TabsPaneContext } from '@element-plus/tokens'
 import type { ExtractPropTypes } from 'vue'
 import type { Awaitable } from '@element-plus/utils'
 
-export type TabPanelName = string | number
+export type TabPanelName = string | number | undefined
 
 export const tabsProps = buildProps({
   type: {
@@ -85,7 +85,9 @@ export default defineComponent({
 
     const nav$ = ref<TabNavInstance>()
     const panes = reactive<Record<number, TabsPaneContext>>({})
-    const currentName = ref(props.modelValue ?? props.activeName ?? '0')
+    const currentName = ref<TabPanelName>(
+      props.modelValue ?? props.activeName ?? '0'
+    )
 
     const changeCurrentName = (value: TabPanelName) => {
       currentName.value = value

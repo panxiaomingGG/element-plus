@@ -13,7 +13,7 @@ export type TabsPaneContext = UnwrapRef<{
 
 export interface TabsRootContext {
   props: TabsProps
-  currentName: Ref<string | number>
+  currentName: Ref<string | number | undefined>
   registerPane: (pane: TabsPaneContext) => void
   unregisterPane: (uid: number) => void
 }
