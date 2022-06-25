@@ -20,7 +20,6 @@ import {
   buildProps,
   capitalize,
   definePropType,
-  isNumber,
   mutable,
   throwError,
 } from '@element-plus/utils'
