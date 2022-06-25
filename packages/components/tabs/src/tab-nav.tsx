@@ -20,6 +20,7 @@ import {
   buildProps,
   capitalize,
   definePropType,
+  isNumber,
   mutable,
   throwError,
 } from '@element-plus/utils'
@@ -308,7 +309,9 @@ const TabNav = defineComponent({
         : null
 
       const tabs = props.panes.map((pane, index) => {
-        const tabName = pane.props.name || pane.index || `${index}`
+        const tabName = isNumber(pane.props.name)
+          ? pane.props.name
+          : pane.props.name || pane.index || `${index}`
         const closable: boolean = pane.isClosable || props.editable
         pane.index = `${index}`
 
