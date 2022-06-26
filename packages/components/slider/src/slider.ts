@@ -10,6 +10,7 @@ import {
   UPDATE_MODEL_EVENT,
 } from '@element-plus/constants'
 import { useSizeProp } from '@element-plus/hooks'
+import type { Placement } from '@popperjs/core'
 import type { Arrayable } from '@element-plus/utils'
 import type { ExtractPropTypes } from 'vue'
 import type { SliderMarkerProps } from './marker'
@@ -89,6 +90,11 @@ export const sliderProps = buildProps({
   tooltipClass: {
     type: String,
     default: undefined,
+  },
+  tooltipPlacement: {
+    type: definePropType<Placement>(String),
+    values: ['top', 'bottom', 'left', 'right'],
+    default: 'top',
   },
   marks: {
     type: definePropType<SliderMarks>(Object),

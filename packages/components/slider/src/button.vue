@@ -15,7 +15,7 @@
     <el-tooltip
       ref="tooltip"
       v-model:visible="tooltipVisible"
-      placement="top"
+      :placement="tooltipPlacement"
       :stop-popper-mouse-event="false"
       :popper-class="tooltipClass"
       :disabled="!showTooltip"

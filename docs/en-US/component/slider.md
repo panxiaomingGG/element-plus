@@ -96,6 +96,7 @@ slider/show-marks
 | format-value-text     | format to display the `aria-valuenow` attribute for screen readers                                        | function(value) | —                       | —       |
 | debounce              | debounce delay when typing, in milliseconds, works when `show-input` is true                              | number          | —                       | 300     |
 | tooltip-class         | custom class name for the tooltip                                                                         | string          | —                       | —       |
+| tooltip-placement     | position of Tooltip                                                                                       | string          | top/bottom/left/right   | top     |
 | marks                 | marks， type of key must be `number` and must in closed interval `[min, max]`, each mark can custom style | object          | —                       | —       |
 
 ## Events
