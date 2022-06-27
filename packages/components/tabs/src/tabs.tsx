@@ -12,6 +12,7 @@ import {
   definePropType,
   isNumber,
   isString,
+  isUndefined,
 } from '@element-plus/utils'
 import { EVENT_CODE, UPDATE_MODEL_EVENT } from '@element-plus/constants'
 import ElIcon from '@element-plus/components/icon'
@@ -25,7 +26,7 @@ import type { TabsPaneContext } from '@element-plus/tokens'
 import type { ExtractPropTypes } from 'vue'
 import type { Awaitable } from '@element-plus/utils'
 
-export type TabPanelName = string | number | undefined
+export type TabPanelName = string | number
 
 export const tabsProps = buildProps({
   type: {
@@ -95,9 +96,9 @@ export default defineComponent({
       emit('tab-change', value)
     }
 
-    const setCurrentName = async (value: TabPanelName) => {
+    const setCurrentName = async (value: TabPanelName | undefined) => {
       // should do nothing.
-      if (currentName.value === value) return
+      if (currentName.value === value || isUndefined(value)) return
 
       try {
         const canLeave = await props.beforeLeave?.(value, currentName.value)
@@ -123,7 +124,7 @@ export default defineComponent({
     }
 
     const handleTabRemove = (pane: TabsPaneContext, ev: Event) => {
-      if (pane.props.disabled) return
+      if (pane.props.disabled || isUndefined(pane.props.name)) return
       ev.stopPropagation()
       emit('edit', pane.props.name, 'remove')
       emit('tab-remove', pane.props.name)
