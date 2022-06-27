@@ -70,7 +70,7 @@ export const tabsEmits = {
   'tab-change': (name: TabPanelName) => isPanelName(name),
   edit: (paneName: TabPanelName | undefined, action: 'remove' | 'add') =>
     ['remove', 'add'].includes(action),
-  'tab-remove': (name: TabPanelName | undefined) => isPanelName(name),
+  'tab-remove': (name?: TabPanelName) => isPanelName(name),
   'tab-add': () => true,
 }
 export type TabsEmits = typeof tabsEmits
@@ -96,7 +96,7 @@ export default defineComponent({
       emit('tab-change', value)
     }
 
-    const setCurrentName = async (value: TabPanelName | undefined) => {
+    const setCurrentName = async (value?: TabPanelName) => {
       // should do nothing.
       if (currentName.value === value || isUndefined(value)) return
 
