@@ -70,7 +70,7 @@ export const tabsEmits = {
   'tab-change': (name: TabPanelName) => isPanelName(name),
   edit: (paneName: TabPanelName | undefined, action: 'remove' | 'add') =>
     ['remove', 'add'].includes(action),
-  'tab-remove': (name: TabPanelName) => isPanelName(name),
+  'tab-remove': (name: TabPanelName | undefined) => isPanelName(name),
   'tab-add': () => true,
 }
 export type TabsEmits = typeof tabsEmits
@@ -124,7 +124,7 @@ export default defineComponent({
     }
 
     const handleTabRemove = (pane: TabsPaneContext, ev: Event) => {
-      if (pane.props.disabled || isUndefined(pane.props.name)) return
+      if (pane.props.disabled) return
       ev.stopPropagation()
       emit('edit', pane.props.name, 'remove')
       emit('tab-remove', pane.props.name)
